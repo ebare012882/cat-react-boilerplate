@@ -45,7 +45,7 @@ const unauthenticatedOptions = (
 const alwaysOptions = (
 	<>
 		<Nav.Link>
-			<Link to='/' style={linkStyle}>
+			<Link to='/cats' style={linkStyle}>
 				Home
 			</Link>
 		</Nav.Link>
