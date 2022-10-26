@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' 
-import { catIndex } from '../api/cat'
 import { Link } from 'react-router-dom'
+import { catIndex } from '../api/cat'
 
 const CatIndex = ({ user, msgAlert }) => {
 

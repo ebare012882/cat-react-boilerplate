@@ -15,8 +15,6 @@ import ChangePassword from './components/auth/ChangePassword'
 import CatCreate from './components/CatCreate'
 import CatIndex from './components/CatIndex'
 import CatShow from './components/CatShow'
-import CatUpdate from './components/CatUpdate'
-import CatDelete from './components/CatDelete'
 
 const App = () => {
 

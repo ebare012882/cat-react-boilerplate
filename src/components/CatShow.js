@@ -1,40 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
-import { catShow, catUpdate, catDelete } from "../api/cat";
-import CatUpdate from "./CatUpdate";
-import CatDelete from "./CatDelete";
-
+import React, { useEffect, useState } from 'react' 
+import { useParams, useNavigate } from 'react-router-dom'
+import { catDelete, catShow, catUpdate } from '../api/cat'
+import CatUpdate from './CatUpdate'
 
 const CatShow = ({ user, msgAlert }) => {
 
     const [cat, setCat] = useState({})
     const [isUpdateShown, setIsUpdateShown] = useState(false)
-    const [isDeleted, setIsDeleted] = useState(false)
+    const [deleted, setDeleted] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         catShow(user, id)
-            .then((res) => {
-                setCat(res.data.cat)
+        .then((res) => {
+            setCat(res.data.cat)
+        })
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Show Cat Failure' + error,
+                variant: 'danger'
             })
-            .catch((error) => {
-                msgAlert({
-                    heading: 'Failure',
-                    message: 'Show Cat Failure' + error,
-                    variant: 'danger'
-                })
-            })
+        })
     }, [])
 
     const toggleShowUpdate = () => {
         setIsUpdateShown(prevUpdateShown => !prevUpdateShown)
     }
-
-    // const toggleShowDelete = () => {
-    //     setIsDeleted(prevUpdateShown => !prevUpdateShown)
-    // }
 
     const handleChange = (event) => {
         // to keep the values as users input info 
@@ -48,7 +42,7 @@ const CatShow = ({ user, msgAlert }) => {
         .then(() => {
             msgAlert({
                 heading: 'Success',
-                message: 'Create Cat',
+                message: 'Updating Cat',
                 variant: 'success'
             })
         })
@@ -62,46 +56,51 @@ const CatShow = ({ user, msgAlert }) => {
     }
 
     const handleDeleteCat = () => {
-        catDelete(cat, user, id)
+        catDelete(user, id)
         .then(() => {
-            setIsDeleted(true)
+            setDeleted(true)
             msgAlert({
                 heading: 'Success',
-                message: 'Deleting a cat',
+                message: 'Deleting a Cat',
                 variant: 'success'
             })
+            
         })
         .catch((error) => {
             msgAlert({
                 heading: 'Failure',
-                message: 'Deleting a cat Failure' + error,
+                message: 'Deleting a Cat Failure' + error,
                 variant: 'danger'
             })
         })
     }
+
     // logical &&
-    // both sides of this check NEED to be truthy values  = true 
-    // logical || 
-    // only one side of this check needs to be truthy = true 
+    // both sides of this check NEED to be truthy values = true
+    // logical ||
+    // only one side of this check needs to be truthy = true
 
     // oneliner
-    if(isDeleted) navigate('./cats')
+    if (deleted) navigate('/cats')
+    // if (deleted) {
+    //     navigate('/cats')
+    // }
 
-    console.log(cat)
     return (
-        <>
-            <h3>Name: {cat.name}</h3>
-            <p>Type: {cat.type}</p>
-            <button onClick={toggleShowUpdate}>Toggle Update</button>
-            {isUpdateShown && (
-            <CatUpdate cat={cat} handleChange={handleChange} handleUpdateCat={handleUpdateCat}/>
-            )}
-            <button onClick={handleDeleteCat}>Delete</button>
-            {/* {isDeleted && (
-            <CatDelete cat={cat} handleDeleteCat={handleDeleteCat} /> */}
-            {/* )} */}
-        </>
-    )
+			<>
+				<h3>Name: {cat.name}</h3>
+				<p>Type: {cat.type}</p>
+				<button onClick={toggleShowUpdate}>Toggle Update</button>
+				{isUpdateShown && (
+					<CatUpdate
+						cat={cat}
+						handleChange={handleChange}
+						handleUpdateCat={handleUpdateCat}
+					/>
+				)}
+                <button onClick={handleDeleteCat} >Delete</button>
+			</>
+		)
 }
 
 export default CatShow
