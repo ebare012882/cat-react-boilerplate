@@ -21,6 +21,12 @@ const CatUpdate = ({ cat, handleChange, handleUpdateCat }) => {
             name='color' 
             onChange={handleChange} 
             />
+            <input 
+            type='Number' 
+            value={cat.age} 
+            name='age' 
+            onChange={handleChange} 
+            />
 			<button onClick={handleUpdateCat}>Update Cat</button>
 		</>
 	)

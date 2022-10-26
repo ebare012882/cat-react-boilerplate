@@ -56,6 +56,12 @@ const CatCreate = ({ user, msgAlert }) => {
 					name='color'
 					onChange={handleChange}
 				/>
+                 <input
+					type='Number'
+					value={cat.age}
+					name='age'
+					onChange={handleChange}
+				/>
 				<button onClick={handleCreateCat}>Create Cat</button>
 			</>
 		)
