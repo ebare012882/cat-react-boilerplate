@@ -1,5 +1,5 @@
 import React, { useState } from 'react' 
-import { petCreate } from '../api/pet'
+import { catCreate } from '../api/cat'
 
 const CatCreate = ({ user, msgAlert }) => {
 

@@ -13,6 +13,10 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CatCreate from './components/CatCreate'
+import CatIndex from './components/CatIndex'
+import CatShow from './components/CatShow'
+import CatUpdate from './components/CatUpdate'
+import CatDelete from './components/CatDelete'
 
 const App = () => {
 
@@ -41,54 +45,68 @@ const App = () => {
 		})
 	}
 
-		return (
-			<Fragment>
-				<Header user={user} />
-				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route
-						path='/sign-up'
-						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
-					/>
-					<Route
-						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
-					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
-		  <Route
-            path='/cats'
-            element={
-              <RequireAuth user={user}>
-                <CatCreate msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
-				</Routes>
-				{msgAlerts.map((msgAlert) => (
-					<AutoDismissAlert
-						key={msgAlert.id}
-						heading={msgAlert.heading}
-						variant={msgAlert.variant}
-						message={msgAlert.message}
-						id={msgAlert.id}
-						deleteAlert={deleteAlert}
-					/>
-				))}
-			</Fragment>
-		)
+	return (
+		<Fragment>
+			<Header user={user} />
+			<Routes>
+				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+				<Route
+					path='/sign-up'
+					element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
+				/>
+				<Route
+					path='/sign-in'
+					element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
+				/>
+	  <Route
+		path='/sign-out'
+		element={
+		  <RequireAuth user={user}>
+			<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+		  </RequireAuth>
+		}
+	  />
+	  <Route
+		path='/change-password'
+		element={
+		  <RequireAuth user={user}>
+			<ChangePassword msgAlert={msgAlert} user={user} />
+		  </RequireAuth>}
+	  />
+	  <Route
+		path='/create'
+		element={
+		  <RequireAuth user={user}>
+			<CatCreate msgAlert={msgAlert} user={user} />
+		  </RequireAuth>}
+	  />
+	  <Route
+		path='/cats'
+		element={
+		  <RequireAuth user={user}>
+			<CatIndex msgAlert={msgAlert} user={user} />
+		  </RequireAuth>}
+	  />
+	  <Route
+		path='/cats/:id'
+		element={
+		  <RequireAuth user={user}>
+			<CatShow msgAlert={msgAlert} user={user} />
+		  </RequireAuth>}
+	  />
+			</Routes>
+			{msgAlerts.map((msgAlert) => (
+				<AutoDismissAlert
+					key={msgAlert.id}
+					heading={msgAlert.heading}
+					variant={msgAlert.variant}
+					message={msgAlert.message}
+					id={msgAlert.id}
+					deleteAlert={deleteAlert}
+				/>
+			))}
+		</Fragment>
+	)
 }
 
 export default App
