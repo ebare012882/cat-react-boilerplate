@@ -23,7 +23,7 @@ const CatIndex = ({ user, msgAlert }) => {
     const allCatsJSX = allCats.map(cat => {
         return (
             <Link to={cat._id} key={cat._id}>
-            <li>Name: {cat.name} type: {cat.type}</li>
+            <li>Name: {cat.name} type: {cat.type} color: {cat.color}</li>
             </Link>
         )
     })

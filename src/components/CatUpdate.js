@@ -15,6 +15,12 @@ const CatUpdate = ({ cat, handleChange, handleUpdateCat }) => {
             name='type' 
             onChange={handleChange} 
             />
+            <input 
+            type='text' 
+            value={cat.color} 
+            name='color' 
+            onChange={handleChange} 
+            />
 			<button onClick={handleUpdateCat}>Update Cat</button>
 		</>
 	)

@@ -90,6 +90,7 @@ const CatShow = ({ user, msgAlert }) => {
 			<>
 				<h3>Name: {cat.name}</h3>
 				<p>Type: {cat.type}</p>
+                <p>Color: {cat.color}</p>
 				<button onClick={toggleShowUpdate}>Toggle Update</button>
 				{isUpdateShown && (
 					<CatUpdate

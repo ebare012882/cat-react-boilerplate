@@ -5,7 +5,8 @@ const CatCreate = ({ user, msgAlert }) => {
 
     const defaultCat = {
         name: '',
-        type: ''
+        type: '',
+        color: ''
     }
 
     const [cat, setCat] = useState(defaultCat)
@@ -47,6 +48,12 @@ const CatCreate = ({ user, msgAlert }) => {
 					type='text'
 					value={cat.type}
 					name='type'
+					onChange={handleChange}
+				/>
+                <input
+					type='text'
+					value={cat.color}
+					name='color'
 					onChange={handleChange}
 				/>
 				<button onClick={handleCreateCat}>Create Cat</button>
