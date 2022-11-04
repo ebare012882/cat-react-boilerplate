@@ -86,6 +86,7 @@ const CatShow = ({ user, msgAlert }) => {
     //     navigate('/cats')
     // }
 
+
     return (
 			<>
 				<h3>Name: {cat.name}</h3>
